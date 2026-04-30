@@ -1,0 +1,7 @@
+ferramentas -> gerenciador de pacotes nuget -> console
+
+adicionar migraatio local:
+add-migration <NomeDaMigration>
+
+subir p banco definitivo:
+update-database
