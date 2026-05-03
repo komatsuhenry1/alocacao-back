@@ -46,6 +46,7 @@ namespace AlocacaoDeVeiculos.Services.Categoria
                 if (categoriasList == null)
                 {
                     response.Mensagem = "Categoria não encontrada!";
+                    response.Status = false;
                     return response;
                 }
 
@@ -72,6 +73,7 @@ namespace AlocacaoDeVeiculos.Services.Categoria
                 if (criarCategoriaDto.ValorDiaria <= 0)
                 {
                     response.Mensagem = "O valor da diaria deve ser mais que 0.";
+                    response.Status = false;
                     return response;
                 }
                 var categoria = new CategoriaModel
@@ -110,20 +112,27 @@ namespace AlocacaoDeVeiculos.Services.Categoria
                 if (categoria == null)
                 {
                     response.Mensagem = "Categoria não encontrada!";
+                    response.Status = false;
                     return response;
                 }
 
                 var veiculo = await _context.Veiculo.FirstOrDefaultAsync(v => v.CategoriaId == idCategoria);
-                if (veiculo.Ativo)
+                if (veiculo != null)
                 {
-                    response.Mensagem = "Não é possível editar a categoria de um veículo que está ativo!";
-                    return response;
-                }
-                var locacao = await _context.Alocacao.FirstOrDefaultAsync(l => l.CarroPlaca == veiculo.Placa);
-                if (locacao.Status == EnumStatusLocacao.Ativo)
-                {
-                    response.Mensagem = "Não é possível editar a categoria de um veículo que está alugado!";
-                    return response;
+                    if (veiculo.Ativo)
+                    {
+                        response.Mensagem = "Não é possível editar a categoria de um veículo que está ativo!";
+                        response.Status = false;
+                        return response;
+                    }
+                    
+                    var locacao = await _context.Alocacao.FirstOrDefaultAsync(l => l.CarroPlaca == veiculo.Placa);
+                    if (locacao != null && locacao.Status == EnumStatusLocacao.Ativo)
+                    {
+                        response.Mensagem = "Não é possível editar a categoria de um veículo que está alugado!";
+                        response.Status = false;
+                        return response;
+                    }
                 }
 
                 categoria.Nome = editarCategoriaDto.Nome;
@@ -160,6 +169,7 @@ namespace AlocacaoDeVeiculos.Services.Categoria
                 if (categoria == null)
                 {
                     response.Mensagem = "Categoria não encontrada!";
+                    response.Status = false;
                     return response;
                 }
 

@@ -1,4 +1,4 @@
-﻿using AlocacaoDeVeiculos.Data;
+using AlocacaoDeVeiculos.Data;
 using AlocacaoDeVeiculos.Models;
 using AlocacaoDeVeiculos.Utils;
 using Azure;
@@ -50,6 +50,7 @@ namespace AlocacaoDeVeiculos.Services.Cliente
                 if (clientesList == null)
                 {
                     response.Mensagem = "Cliente não encontrado!";
+                    response.Status = false;
                     return response;
                 }
 
@@ -145,6 +146,7 @@ namespace AlocacaoDeVeiculos.Services.Cliente
                 if (cliente == null)
                 {
                     response.Mensagem = "Cliente não encontrado!";
+                    response.Status = false;
                     return response;
                 }
                 // adiciona as alterações
@@ -187,13 +189,15 @@ namespace AlocacaoDeVeiculos.Services.Cliente
                 if (cliente == null)
                 {
                     response.Mensagem = "Cliente não encontrado!";
+                    response.Status = false;
                     return response;
-                } 
+                }
                 
                 var alocacoesAtivas = await _context.Alocacao.FirstOrDefaultAsync(a => a.ClienteId == idCliente);
                 if (alocacoesAtivas != null)
                 {
                     response.Mensagem = "Não é possível excluir o cliente, pois existem alocações ativas associadas a ele.";
+                    response.Status = false;
                     return response;
                 }
 

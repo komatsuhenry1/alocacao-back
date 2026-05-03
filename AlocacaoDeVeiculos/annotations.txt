@@ -1,3 +1,5 @@
+dotnet watch run --project AlocacaoDeVeiculos
+
 ferramentas -> gerenciador de pacotes nuget -> console
 
 adicionar migraatio local:

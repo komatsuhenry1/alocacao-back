@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 3,
   "targets": {
     "net8.0": {
       "Azure.Core/1.35.0": {
@@ -4586,36 +4586,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Timeware067\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/henrykomatsu/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Timeware067\\Documents\\dev\\AlocacaoDeVeiculos\\AlocacaoDeVeiculos\\AlocacaoDeVeiculos.csproj",
+      "projectUniqueName": "/Users/henrykomatsu/Documents/dev/alocacao-carros/alocacao-back/AlocacaoDeVeiculos/AlocacaoDeVeiculos.csproj",
       "projectName": "AlocacaoDeVeiculos",
-      "projectPath": "C:\\Users\\Timeware067\\Documents\\dev\\AlocacaoDeVeiculos\\AlocacaoDeVeiculos\\AlocacaoDeVeiculos.csproj",
-      "packagesPath": "C:\\Users\\Timeware067\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Timeware067\\Documents\\dev\\AlocacaoDeVeiculos\\AlocacaoDeVeiculos\\obj\\",
+      "projectPath": "/Users/henrykomatsu/Documents/dev/alocacao-carros/alocacao-back/AlocacaoDeVeiculos/AlocacaoDeVeiculos.csproj",
+      "packagesPath": "/Users/henrykomatsu/.nuget/packages/",
+      "outputPath": "/Users/henrykomatsu/Documents/dev/alocacao-carros/alocacao-back/AlocacaoDeVeiculos/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Timeware067\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/henrykomatsu/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
-          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {}
         }
@@ -4629,12 +4621,10 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "10.0.300"
+      }
     },
     "frameworks": {
       "net8.0": {
-        "framework": "net8.0",
         "targetAlias": "net8.0",
         "dependencies": {
           "BCrypt.Net-Next": {
@@ -4685,7 +4675,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300-preview.0.26177.108/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.420/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

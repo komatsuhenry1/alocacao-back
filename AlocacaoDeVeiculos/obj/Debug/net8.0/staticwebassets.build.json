@@ -1,1 +1,11 @@
-{"Version":1,"Hash":"fzk3a152EDgnhS9Hws6vDwzxdQx+vb5CcB9w/Gh1Ii8=","Source":"AlocacaoDeVeiculos","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
+{
+  "Version": 1,
+  "Hash": "MIQL0cvCWZ2fKXMGoo4tYD6GhdUX4E8qbpMdl2DNHQc=",
+  "Source": "AlocacaoDeVeiculos",
+  "BasePath": "_content/AlocacaoDeVeiculos",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

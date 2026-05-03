@@ -1,4 +1,4 @@
-﻿namespace AlocacaoDeVeiculos.Dto.Cliente
+namespace AlocacaoDeVeiculos.Dto.Cliente
 {
     public class CriarClienteDto
     {

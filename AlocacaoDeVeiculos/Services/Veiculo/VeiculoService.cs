@@ -10,18 +10,19 @@ namespace AlocacaoDeVeiculos.Services.Veiculo
         private readonly AppDbContext _context;
         public VeiculoService(AppDbContext context)
         {
-            _context = context; 
+            _context = context;
         }
 
         public async Task<ResponseModel<VeiculoModel>> BuscarVeiculoPorPlaca(string placa)
         {
             ResponseModel<VeiculoModel> response = new ResponseModel<VeiculoModel>();
-            try 
-            { 
+            try
+            {
                 var veiculo = await _context.Veiculo.FirstOrDefaultAsync(v => v.Placa == placa);
                 if (veiculo == null)
                 {
                     response.Mensagem = "Veículo não encontrado!";
+                    response.Status = false;
                     return response;
                 }
                 response.Dados = veiculo;
@@ -63,7 +64,7 @@ namespace AlocacaoDeVeiculos.Services.Veiculo
             }
         }
 
-        public async Task<ResponseModel<VeiculoModel>> CriarVeiculo(CriarVeiculoDto criarVeiculoDto) 
+        public async Task<ResponseModel<VeiculoModel>> CriarVeiculo(CriarVeiculoDto criarVeiculoDto)
         {
             ResponseModel<VeiculoModel> response = new ResponseModel<VeiculoModel>();
             try
@@ -72,6 +73,7 @@ namespace AlocacaoDeVeiculos.Services.Veiculo
                 if (categoriaId == null)
                 {
                     response.Mensagem = "Não foi possivel encontrar uma categoria para esse veículo.";
+                    response.Status = false;
                     return response;
                 }
 
@@ -111,13 +113,21 @@ namespace AlocacaoDeVeiculos.Services.Veiculo
             ResponseModel<VeiculoModel> response = new ResponseModel<VeiculoModel>();
             try
             {
+                var categoriaId = await _context.Categoria.FirstOrDefaultAsync(c => c.Id == editarVeiculoDto.CategoriaId);
+                if (categoriaId == null)
+                {
+                    response.Mensagem = "Não foi possivel encontrar uma categoria para esse veículo.";
+                    response.Status = false;
+                    return response;
+                }
+
                 var veiculo = await _context.Veiculo.FirstOrDefaultAsync(v => v.Placa == placa);
                 if (veiculo == null)
                 {
                     response.Mensagem = "Veículo não encontrado!";
+                    response.Status = false;
                     return response;
                 }
-                
                 veiculo.Marca = editarVeiculoDto.Marca;
                 veiculo.Modelo = editarVeiculoDto.Modelo;
                 veiculo.Ano = editarVeiculoDto.Ano;
@@ -153,9 +163,9 @@ namespace AlocacaoDeVeiculos.Services.Veiculo
                 if (veiculo == null)
                 {
                     response.Mensagem = "Veículo não encontrado!";
+                    response.Status = false;
                     return response;
                 }
-
                 _context.Veiculo.Remove(veiculo);
                 await _context.SaveChangesAsync();
                 response.Status = true;

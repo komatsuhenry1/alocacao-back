@@ -19,6 +19,17 @@ builder.Services.AddScoped<IVeiculoInterface, VeiculoService>();
 builder.Services.AddScoped<IAlocacaoInterface, AlocacaoService>();
 builder.Services.AddScoped<ICategoriaInterface, CategoriaService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Policy", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:3000", "http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); // busca config dentro da app settings e caputra o valor da chave 'DefaultConnection'
@@ -26,6 +37,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 );
 
 var app = builder.Build();
+
+app.UseCors("Policy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
