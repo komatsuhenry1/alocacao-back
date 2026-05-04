@@ -41,6 +41,10 @@ stages:
           az containerapp update \
             --name $(containerAppName) \
             --resource-group $(resourceGroup) \
-            --image $(acrName).azurecr.io/$(imageName):$(tag) \
+            --image $(acrName).azurecr.io/$(imageName):$(tag)
+
+          az containerapp ingress update \
+            --name $(containerAppName) \
+            --resource-group $(resourceGroup) \
             --target-port 8080 \
-            --ingress external
+            --type external
