@@ -148,7 +148,7 @@ namespace AlocacaoDeVeiculos.Services.Alocacao
                 await _context.SaveChangesAsync();
 
                 response.Dados = alocacao;
-                response.Mensagem = $"Locação criada com sucesso! Valor total: {valorTotalLocacao:C} por {diasDeAlocacao} dias";
+                response.Mensagem = $"Locação criada com sucesso! Valor totall: {valorTotalLocacao} por {diasDeAlocacao} dias";
                 response.Status = true;
 
                 return response;
