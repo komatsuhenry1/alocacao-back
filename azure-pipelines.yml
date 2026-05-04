@@ -25,9 +25,12 @@ stages:
         inlineScript: 'az acr login --name $(acrName)'
 
     - script: |
-        docker buildx build --platform linux/amd64 -t $(acrName).azurecr.io/$(imageName):$(tag) -t $(acrName).azurecr.io/$(imageName):latest --push .
+            docker buildx build --platform linux/amd64 \
+              -f ./AlocacaoDeVeiculos/Dockerfile \
+              -t $(acrName).azurecr.io/$(imageName):$(tag) \
+              -t $(acrName).azurecr.io/$(imageName):latest --push .
       displayName: 'Docker Build and Push (AMD64)'
-
+      
     - task: AzureCLI@2
       displayName: 'Deploy para o Container App'
       inputs:
