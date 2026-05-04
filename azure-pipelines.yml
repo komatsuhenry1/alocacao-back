@@ -1,0 +1,41 @@
+trigger:
+- main
+
+pool:
+  name: 'Default'
+
+variables:
+  resourceGroup: 'rg-locadora'
+  acrName: 'acrlocadoradev'
+  containerAppName: 'api-locadora-dev'
+  imageName: 'api-locadora'
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: BuildAndDeploy
+  jobs:
+  - job: Build
+    steps:
+    - task: AzureCLI@2
+      displayName: 'Login no ACR'
+      inputs:
+        azureSubscription: 'sc-azure-conexao'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az acr login --name $(acrName)'
+
+    - script: |
+        docker buildx build --platform linux/amd64 -t $(acrName).azurecr.io/$(imageName):$(tag) -t $(acrName).azurecr.io/$(imageName):latest --push .
+      displayName: 'Docker Build and Push (AMD64)'
+
+    - task: AzureCLI@2
+      displayName: 'Deploy para o Container App'
+      inputs:
+        azureSubscription: 'sc-azure-conexao'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az containerapp update \
+            --name $(containerAppName) \
+            --resource-group $(resourceGroup) \
+            --image $(acrName).azurecr.io/$(imageName):$(tag)
