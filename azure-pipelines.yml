@@ -41,9 +41,8 @@ stages:
           az containerapp update \
             --name $(containerAppName) \
             --resource-group $(resourceGroup) \
-            --image $(acrName).azurecr.io/$(imageName):$(tag) \
-            --registry-server $(acrName).azurecr.io \
-            --registry-identity system
+            --container-name $(imageName) \
+            --image $(acrName).azurecr.io/$(imageName):$(tag)
 
           az containerapp ingress update \
             --name $(containerAppName) \
